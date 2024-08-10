@@ -39,7 +39,7 @@ namespace ControleDeItens.Geladeira
             geladeira[1][1].AddRange(new List<string> { "Requeijão", "Queijo" });
 
             // charcutaria, carnes e ovos
-            geladeira[2][0].AddRange(new List<string> { "Charuto", "Cigarro" });
+            geladeira[2][0].AddRange(new List<string> { "Carne Bovina", "Bacon" });
             geladeira[2][1].AddRange(new List<string> { "Frango", "Ovos" });
         }
 

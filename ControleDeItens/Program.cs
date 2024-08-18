@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿
+using Domain;
 
 Geladeira objGeladeira = new Geladeira();
 
@@ -25,7 +26,6 @@ objGeladeira.AdicionarItensAoContainer(0, 3, objItemCarne);
 
 //
 objGeladeira.ExibirItens();
-
 
 
 

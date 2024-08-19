@@ -36,22 +36,6 @@ objGeladeira.AdicionarItemNaGeladeira(2, 0, 1, objItemCarne);
 objGeladeira.AdicionarItemNaGeladeira(2, 1, 3, objItemOvos);
 
 Console.WriteLine("Alimentos na geladeira:");
-
-objGeladeira.AdicionarItemNaGeladeira(0, 0, 0, objItemMorango);
-objGeladeira.AdicionarItemNaGeladeira(0, 0, 1, objItemUva);
-objGeladeira.AdicionarItemNaGeladeira(0, 1, 2, objItemTomate);
-
-// Laticínios e Enlatados
-objGeladeira.AdicionarItemNaGeladeira(1, 0, 0, objItemTomatePelado);
-objGeladeira.AdicionarItemNaGeladeira(1, 1, 1, objItemCremeLeite);
-objGeladeira.AdicionarItemNaGeladeira(1, 1, 2, objItemLeite);
-
-// Charcutaria, Carnes e Ovos
-objGeladeira.AdicionarItemNaGeladeira(2, 0, 0, objItemBacon);
-objGeladeira.AdicionarItemNaGeladeira(2, 0, 1, objItemCarne);
-objGeladeira.AdicionarItemNaGeladeira(2, 1, 3, objItemOvos);
-
-Console.WriteLine("Alimentos na geladeira:");
 objGeladeira.ExibirItens();
 
 objGeladeira.RemoverItem(1, 0, 0);
@@ -62,5 +46,6 @@ objGeladeira.AdicionarItemNaGeladeira(1, 0, 0, objItemIogurte);
 Console.WriteLine();
 
 Console.WriteLine("Atualização da geladeira:");
+
 
 // Aluna: Isadora Melo

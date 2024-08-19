@@ -36,32 +36,16 @@ objGeladeira.AdicionarItemNaGeladeira(2, 0, 1, objItemCarne);
 objGeladeira.AdicionarItemNaGeladeira(2, 1, 3, objItemOvos);
 
 Console.WriteLine("Alimentos na geladeira:");
-
-objGeladeira.AdicionarItemGeladeira(0, 0, 0, objItemMorango);
-objGeladeira.AdicionarItemGeladeira(0, 0, 1, objItemUva);
-objGeladeira.AdicionarItemGeladeira(0, 1, 2, objItemTomate);
-
-// Laticínios e Enlatados
-objGeladeira.AdicionarItemGeladeira(1, 0, 0, objItemTomatePelado);
-objGeladeira.AdicionarItemGeladeira(1, 1, 1, objItemCremeLeite);
-objGeladeira.AdicionarItemGeladeira(1, 1, 2, objItemLeite);
-
-// Charcutaria, Carnes e Ovos
-objGeladeira.AdicionarItemGeladeira(2, 0, 0, objItemBacon);
-objGeladeira.AdicionarItemGeladeira(2, 0, 1, objItemCarne);
-objGeladeira.AdicionarItemGeladeira(2, 1, 3, objItemOvos);
-
-Console.WriteLine("Alimentos na geladeira:");
 objGeladeira.ExibirItens();
 
 objGeladeira.RemoverItem(1, 0, 0);
 
 var objItemIogurte = new Item() { Alimento = "Iogurte", Quantidade = 50, Unidade = "ml", Classificacao = "Laticínios e Enlatados", Id = 11 };
-objGeladeira.AdicionarItemGeladeira(1, 0, 0, objItemIogurte);
+objGeladeira.AdicionarItemNaGeladeira(1, 0, 0, objItemIogurte);
 
 Console.WriteLine();
 
 Console.WriteLine("Atualização da geladeira:");
 
-// Aluna: Isadora Melo
 
+// Aluna: Isadora Melo

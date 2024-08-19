@@ -9,62 +9,80 @@ namespace GeladeiraCodeRDIVersity
 {
     public class Container : IContainer
     {
-
-        private const int LimiteItens = 4;
+        private const int limiteItens = 4;
         private readonly List<Item> _itens;
 
         public int NumeroDeContainer { get; private set; }
 
-        public Container(int numeroContainer, int capacidade = LimiteItens)
+
+        public Container(int numeroContainer, int capacidade = limiteItens)
         {
             NumeroDeContainer = numeroContainer;
-            _itens = new List<Item>();
-
-            InicializarItens(capacidade);
+            _itens = new List<Item?>(new Item?[capacidade]);
         }
-
-        private void InicializarItens(int capacidade)
+        public void RemoverItemDoConatiner(int posicao)
         {
-            for (int i = 0; i < capacidade; i++)
-                _itens.Add(new Item());
-        }
-
-        private void ValidarPosicao(int posicao)
-        {
-            if (posicao < 0 || posicao >= LimiteItens)
-                throw new Exception("Posição inválida!");
-        }
-
-        public void ColocarItem(int posicao, Item item)
-        {
-            ValidarPosicao(posicao);
-
-            if (_itens[posicao] != null && _itens[posicao].Id != null)
+            if (posicao < 0 || posicao >= limiteItens)
             {
-                Console.WriteLine($"Essa posição {posicao} está ocupada");
+                Console.WriteLine("Posição incorreta");
                 return;
             }
-
-            _itens[posicao] = item;
-        }
-
-        public void RemoverItem(int posicao)
-        {
-            ValidarPosicao(posicao);
-
             if (_itens[posicao] == null || _itens[posicao].Id == null)
             {
-                Console.WriteLine($"Essa posição {posicao} foi removida e está vazia!");
+                Console.WriteLine($"Essa posição {posicao} vazia");
                 return;
             }
-
-            _itens[posicao] = new Item();
+            _itens[posicao] = null;
+            Console.WriteLine($"Item removido da posição {posicao}");
         }
 
-        public void RemoverTodosItens()
+        public void AdicionarItem(int posicao, Item item)
         {
-            _itens.Clear();
-            Console.WriteLine($"Itens removidos dos containers.");
+            if (posicao < 0 || posicao >= limiteItens)
+            {
+                Console.WriteLine("Posição inválida.");
+                return;
+            }
+            if (item == null)
+            {
+                Console.WriteLine("Item inválido.");
+                return;
+            }
+            if (_itens[posicao] != null)
+            {
+                Console.WriteLine($"A posição {posicao} já está ocupada.");
+                return;
+            }
+            _itens[posicao] = item;
+            Console.WriteLine($"Item adicionado à posição {posicao}: {item.Alimento}, {item.Classificacao}.");
+        }
+
+        public void AdicionarItens(List<Item> itens)
+        {
+            foreach (var item in itens)
+            {
+                for (int i = 0; i < _itens.Count; i++)
+                {
+                    if (_itens[i] == null)
+                    {
+                        _itens[i] = item;
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void ExibirItens()
+        {
+            Console.WriteLine($"Container {NumeroDeContainer}:");
+            for (int posicao = 0; posicao < limiteItens; posicao++)
+            {
+                var item = _itens[posicao];
+                if (item != null)
+                {
+                    Console.WriteLine($"Posição {posicao}: {item.Alimento}, {item.Quantidade}, {item.Classificacao}");
+                }
+            }
         }
 
         public bool EstaCheio()
@@ -77,48 +95,12 @@ namespace GeladeiraCodeRDIVersity
             return _itens.All(item => item == null || item.Id == null);
         }
 
-        public void LimparContainer()
+        public void EsvaziarGeladeira()
         {
-            InicializarItens(LimiteItens);
+            _itens.Clear();
+            Console.WriteLine($"Itens removidos dos containers.");
         }
 
-        public void AdicionarItens(List<Item> itens)
-        {
-            if (itens.Count > LimiteItens)
-            {
-                Console.WriteLine($"A geladeira não comporta este item no momento.");
-                return;
-            }
-
-            int posicao = 0;
-            foreach (var item in itens)
-            {
-                while (posicao < LimiteItens && _itens[posicao].Id != null)
-                    posicao++;
-
-                if (posicao < LimiteItens)
-                    _itens[posicao] = item;
-                else
-                {
-                    Console.WriteLine("O container está cheio!");
-                    break;
-                }
-            }
-        }
-
-        public void ExibirItens()
-        {
-            Console.WriteLine($"Container {NumeroDeContainer}:");
-            for (int posicao = 0; posicao < LimiteItens; posicao++)
-            {
-                var item = _itens[posicao];
-                if (item != null && item.Id != null)
-                    Console.WriteLine($"Posição {posicao}: {item.Classificacao}");
-            }
-        }
     }
 }
-
-
-
 //controla a lista de itens

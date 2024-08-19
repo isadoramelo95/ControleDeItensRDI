@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\RDI\Aula09Prosper\Geladeira\GeladeiraCodeRDIVersity\Domain.csproj" />
+  </ItemGroup>
+
 </Project>

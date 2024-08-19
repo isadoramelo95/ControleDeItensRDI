@@ -21,6 +21,22 @@ var objItemOvos = new Item() { Alimento = "Ovos", Quantidade = 1, Unidade = "duz
 
 //Adicionar os itens na geladeira
 //Hortifruti
+objGeladeira.AdicionarItemNaGeladeira(0, 0, 0, objItemMorango);
+objGeladeira.AdicionarItemNaGeladeira(0, 0, 1, objItemUva);
+objGeladeira.AdicionarItemNaGeladeira(0, 1, 2, objItemTomate);
+
+// Laticínios e Enlatados
+objGeladeira.AdicionarItemNaGeladeira(1, 0, 0, objItemTomatePelado);
+objGeladeira.AdicionarItemNaGeladeira(1, 1, 1, objItemCremeLeite);
+objGeladeira.AdicionarItemNaGeladeira(1, 1, 2, objItemLeite);
+
+// Charcutaria, Carnes e Ovos
+objGeladeira.AdicionarItemNaGeladeira(2, 0, 0, objItemBacon);
+objGeladeira.AdicionarItemNaGeladeira(2, 0, 1, objItemCarne);
+objGeladeira.AdicionarItemNaGeladeira(2, 1, 3, objItemOvos);
+
+Console.WriteLine("Alimentos na geladeira:");
+
 objGeladeira.AdicionarItemGeladeira(0, 0, 0, objItemMorango);
 objGeladeira.AdicionarItemGeladeira(0, 0, 1, objItemUva);
 objGeladeira.AdicionarItemGeladeira(0, 1, 2, objItemTomate);
@@ -46,9 +62,6 @@ objGeladeira.AdicionarItemGeladeira(1, 0, 0, objItemIogurte);
 Console.WriteLine();
 
 Console.WriteLine("Atualização da geladeira:");
-objGeladeira.ExibirItens();
-
-
 
 // Aluna: Isadora Melo
 

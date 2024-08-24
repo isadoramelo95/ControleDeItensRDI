@@ -1,9 +1,4 @@
 ﻿using Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeladeiraCodeRDIVersity
 {
@@ -14,12 +9,16 @@ namespace GeladeiraCodeRDIVersity
 
         public int NumeroDeContainer { get; private set; }
 
-
         public Container(int numeroContainer, int capacidade = limiteItens)
         {
             NumeroDeContainer = numeroContainer;
             _itens = new List<Item?>(new Item?[capacidade]);
         }
+
+        public Container()
+        {
+        }
+
         public void RemoverItemDoConatiner(int posicao)
         {
             if (posicao < 0 || posicao >= limiteItens)
@@ -55,6 +54,31 @@ namespace GeladeiraCodeRDIVersity
             }
             _itens[posicao] = item;
             Console.WriteLine($"Item adicionado à posição {posicao}: {item.Alimento}, {item.Classificacao}.");
+        }
+
+        public void AlterarPosicaoItem(int posicaoAtual, int novaPosicao)
+        {
+            if (posicaoAtual < 0 || posicaoAtual >= limiteItens || novaPosicao < 0 || novaPosicao >= limiteItens)
+            {
+                Console.WriteLine("Posição inválida.");
+                return;
+            }
+
+            if (_itens[posicaoAtual] == null)
+            {
+                Console.WriteLine($"Não há item na posição {posicaoAtual} para mover.");
+                return;
+            }
+
+            if (_itens[novaPosicao] != null)
+            {
+                Console.WriteLine($"A posição {novaPosicao} já está ocupada.");
+                return;
+            }
+
+            _itens[novaPosicao] = _itens[posicaoAtual];
+            _itens[posicaoAtual] = null;
+            Console.WriteLine($"Item movido da posição {posicaoAtual} para a posição {novaPosicao}.");
         }
 
         public void AdicionarItens(List<Item> itens)

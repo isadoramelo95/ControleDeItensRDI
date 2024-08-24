@@ -40,7 +40,7 @@ objGeladeira.AdicionarItemNaGeladeira(2, 1, 3, objItemOvos);
 Console.WriteLine();
 
 Console.WriteLine("Alimentos na geladeira:");
-objGeladeira.ExibirItens();
+objGeladeira.ExibirItensNaGeladeira();
 
 objGeladeira.RemoverItem(1, 0, 0);
 
@@ -50,7 +50,7 @@ objGeladeira.AdicionarItemNaGeladeira(1, 0, 0, objItemIogurte);
 Console.WriteLine();
 
 Console.WriteLine("Atualização da geladeira:");
-objGeladeira.ExibirItens();
+objGeladeira.ExibirItensNaGeladeira();
 
 
 

@@ -37,6 +37,20 @@ namespace GeladeiraAPI.Controllers
             _andar = new Andar();
         }
 
+        [HttpHead("{id}")]
+        public IActionResult CheckItemExists(int id)
+        {
+            var item = listItems.FirstOrDefault(p => p.Id == id);
+            if (item != null)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<Item>> Get()
         {
@@ -73,7 +87,7 @@ namespace GeladeiraAPI.Controllers
             }
         }
 
-        [HttpPut("{posicao-id}")]
+        [HttpPut("{id}")]
         public ActionResult<List<Item>> PutById(int id, [FromBody] Item value)
         {
             var geladeira = listItems.Where(p => p.Id == id).FirstOrDefault();
@@ -92,7 +106,7 @@ namespace GeladeiraAPI.Controllers
             return listItems;
         }
 
-        [HttpPut("posicao")]
+        [HttpPut("Editar")]
         public ActionResult PutByPosition(int andar, int container, int posicaoAtual, int novaPosicao)
         {
             try
@@ -134,7 +148,7 @@ namespace GeladeiraAPI.Controllers
             return Ok($"Item com ID {id} foi excluído com sucesso.");
         }
 
-        [HttpDelete("remover-item")]
+        [HttpDelete("remover")]
         public ActionResult DeleteByPosition(int numAndar, int numContainer, int posicao)
         {
             try

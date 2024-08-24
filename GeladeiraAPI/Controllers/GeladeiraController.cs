@@ -87,6 +87,9 @@ namespace GeladeiraAPI.Controllers
             }
         }
 
+        [HttpPost]
+        public void Post([FromBody] Item value) => listItems.Add(value);
+
         [HttpPut("{id}")]
         public ActionResult<List<Item>> PutById(int id, [FromBody] Item value)
         {

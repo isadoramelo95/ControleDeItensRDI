@@ -57,7 +57,7 @@
             container?.EsvaziarGeladeira();
         }
 
-        public void ExibirItens()
+        public void ExibirItensNaGeladeira()
         {
             foreach (var andar in _andares)
                 andar.ExibirItens();

@@ -6,6 +6,9 @@
 
         public int NumeroAndar { get; private set; }
 
+        public Andar()
+        {
+        }
         public Andar(int numeroAndar, int qntContainers = 2)
         {
             NumeroAndar = numeroAndar;
@@ -15,18 +18,19 @@
                 _containers.Add(new Container(i));
         }
 
-        public Andar()
-        {
-        }
-
+        public string ObterAndar(int numeroAndar) => ObterAndar(numeroAndar);
         public Container? ObterContainer(int numeroContainer) =>
            _containers.FirstOrDefault(container => container.NumeroDeContainer == numeroContainer);
 
-        public void ExibirItens()
+        public string ExibirItens()
         {
-            Console.WriteLine($"Andar {NumeroAndar}:");
+            var mensagem = $"Andar {NumeroAndar}:\n";
             foreach (var container in _containers)
-                container.ExibirItens();
+            {
+                mensagem += container.ExibirItens() + "\n";
+            }
+
+            return mensagem;
         }
     }
 }

@@ -9,10 +9,10 @@ namespace Domain
 {
     public interface IContainer
     {
-        void RemoverItemDoConatiner(int posicao);
-        void AdicionarItem(int posicao, Item item);
+        string RemoverItemDoConatiner(int posicao);
+        string AdicionarItem(int posicao, Item item);
         void AdicionarItens(List<Item> itens);
-        void EsvaziarGeladeira();
+        string EsvaziarGeladeira();
         bool EstaCheio();
         bool EstaVazio();
     }

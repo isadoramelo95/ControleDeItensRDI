@@ -12,6 +12,15 @@ namespace GeladeiraAPI.Controllers
 
         private readonly Container _container;
         private readonly Andar _andar;
+        private readonly Geladeira _geladeira;
+
+        //public class AdicionarItemRequest
+        //{
+        //    public Geladeira Geladeira { get; set; }
+        //    public Container Container { get; set; }
+        //    public Andar Andar { get; set; }
+        //    public Item Item { get; set; }
+        //}
 
         public GeladeiraController()
         {
@@ -35,6 +44,7 @@ namespace GeladeiraAPI.Controllers
 
             _container = new Container();
             _andar = new Andar();
+            _geladeira = new Geladeira();
         }
 
         [HttpHead("{id}")]
@@ -56,11 +66,8 @@ namespace GeladeiraAPI.Controllers
         {
             if (listItems == null || !listItems.Any())
             {
-                Console.WriteLine("A lista de itens está vazia ou nula.");
                 return NotFound("Nenhum item encontrado.");
             }
-
-            Console.WriteLine($"Itens encontrados: {listItems.Count}");
             return Ok(listItems);
         }
 
@@ -88,7 +95,18 @@ namespace GeladeiraAPI.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] Item value) => listItems.Add(value);
+
+        public IActionResult PostItem([FromBody] Item item)
+        {
+            if (item.Alimento == null)
+            {
+                return BadRequest("Preencha o item");
+            }
+
+            listItems.Add(item);
+
+            return Ok($"{item} foi adicionado com sucesso");
+        }
 
         [HttpPut("{id}")]
         public ActionResult<List<Item>> PutById(int id, [FromBody] Item value)
@@ -114,21 +132,26 @@ namespace GeladeiraAPI.Controllers
         {
             try
             {
-                var andarSelecionado = _andar.ObterContainer(andar);
+                var andarSelecionado = _geladeira.AvaliarAndar(andar);
                 if (andarSelecionado == null)
                 {
                     return NotFound($"Andar {andar} não encontrado.");
                 }
 
-                var containerSelecionado = _andar.ObterContainer(container);
+                var containerSelecionado = andarSelecionado.ObterContainer(container);
                 if (containerSelecionado == null)
                 {
                     return NotFound($"Container {container} não encontrado.");
                 }
 
-                containerSelecionado.AlterarPosicaoItem(posicaoAtual, novaPosicao);
+                var resultado = containerSelecionado.AlterarPosicaoItem(posicaoAtual, novaPosicao);
 
-                return Ok($"Item movido da posição {posicaoAtual} para a posição {novaPosicao} no container {container} no andar {andar}.");
+                if (resultado.Contains("inválida") || resultado.Contains("não existe item") || resultado.Contains("ocupada"))
+                {
+                    return BadRequest(resultado);
+                }
+
+                return Ok(resultado);
             }
             catch (Exception ex)
             {
@@ -177,6 +200,37 @@ namespace GeladeiraAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        //[HttpPost("AdicionarItens")]
+        //public ActionResult<string> Post([FromBody] AdicionarItemRequest addItem)
+        //{
+        //    if (addItem == null || addItem.Item == null)
+        //    {
+        //        return BadRequest("O campo está vazio, por favor adicione um valor");
+        //    }
+        //    try
+        //    {
+        //        int andarEscolhido = 0;
+
+        //        var resultado = _geladeira.AdicionarItemNaGeladeira(
+        //                andarEscolhido,
+        //                addItem.Container.NumeroDeContainer,
+        //                addItem.Geladeira.Posicao,
+        //                addItem.Item
+        //                  );
+        //        if (resultado.Contains("não tem espaço suficiente"))
+        //        {
+        //            return BadRequest(resultado);
+        //        }
+
+        //        return Ok("Item adicionado com sucesso.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest($"Erro ao adicionar item: {ex.Message}");
+        //    }
+        //}
     }
 
 }

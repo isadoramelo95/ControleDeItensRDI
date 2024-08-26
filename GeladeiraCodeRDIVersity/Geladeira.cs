@@ -3,30 +3,40 @@
     public class Geladeira
     {
         private List<Andar> _andares;
+        public int Posicao { get; set; }
+        public Item Item { get; set; }
 
-        public Geladeira(int numAndares = 3)
+        public Geladeira() { }
+
+        public Geladeira(int numContainer, Item item, int posicao = 4, int numAndares = 3)
         {
             _andares = new List<Andar>();
+            Posicao = posicao;
+            Item = item;
 
             for (int i = 0; i < numAndares; i++)
                 _andares.Add(new Andar(i));
+            Posicao = posicao;
         }
 
-        private Andar AvaliarAndar(int numAndar)
+        public Andar AvaliarAndar(int numAndar)
         {
             if (numAndar < 0 || numAndar >= _andares.Count)
-                throw new Exception("Não foi encontrado o numero do andar");
-
+            {
+                throw new Exception("Número do andar inválido.");
+            }
             return _andares[numAndar];
         }
 
-        public void AdicionarItemNaGeladeira(int numAndar, int numContainer, int? posicao, Item item)
+        public string AdicionarItemNaGeladeira(int? numAndar, int numContainer, int? posicao, Item item)
         {
-            var andar = AvaliarAndar(numAndar);
+            int andarSelecionado = numAndar ?? 0;
+
+            var andar = AvaliarAndar(andarSelecionado);
             var container = andar.ObterContainer(numContainer);
 
             if (container == null)
-                throw new Exception("Desculpe, número do container é incorreto!");
+                throw new Exception("Desculpe, não foi adicionado nenhum item!");
 
             if (posicao.HasValue && posicao.Value >= 0)
             {
@@ -40,10 +50,11 @@
                 }
                 else
                 {
-                    Console.WriteLine("O container não tem espaço suficiente");
+                    return "O container não tem espaço suficiente";
                 }
             }
 
+            return "Item adicionado com sucesso!";
         }
         public void RemoverItem(int numAndar, int numContainer, int posicao)
         {
@@ -66,4 +77,3 @@
 }
 //gerencia os andares
 
-//subir no git

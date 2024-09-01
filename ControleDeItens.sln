@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeladeiraAPI", "GeladeiraAP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RepositoryEntity", "RepositoryEntity", "{72696954-44B8-47EE-A89B-12D48D76F51A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{9FD13479-8FC8-4004-AB79-2A399178A96D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{9FD13479-8FC8-4004-AB79-2A399178A96D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{174FA2F7-B1A6-42FD-A92D-00FA6A9C3FE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{6A900823-81CD-427C-AC70-16D0D9ADCFA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,12 +39,17 @@ Global
 		{9FD13479-8FC8-4004-AB79-2A399178A96D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FD13479-8FC8-4004-AB79-2A399178A96D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FD13479-8FC8-4004-AB79-2A399178A96D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A900823-81CD-427C-AC70-16D0D9ADCFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A900823-81CD-427C-AC70-16D0D9ADCFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A900823-81CD-427C-AC70-16D0D9ADCFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A900823-81CD-427C-AC70-16D0D9ADCFA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9FD13479-8FC8-4004-AB79-2A399178A96D} = {72696954-44B8-47EE-A89B-12D48D76F51A}
+		{6A900823-81CD-427C-AC70-16D0D9ADCFA1} = {174FA2F7-B1A6-42FD-A92D-00FA6A9C3FE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1ADF344-29BB-4669-B1DF-F86C50E0E3A8}

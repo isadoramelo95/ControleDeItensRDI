@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeladeiraCodeRDIVersity\Model.csproj" />
+    <ProjectReference Include="..\GeladeiraCodeRDIVersity\Domain.csproj" />
   </ItemGroup>
 
 </Project>

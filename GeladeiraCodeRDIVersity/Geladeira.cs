@@ -16,7 +16,7 @@
 
             for (int i = 0; i < numAndares; i++)
                 _andares.Add(new Andar(i));
-            Posicao = posicao;
+
         }
 
         public Andar AvaliarAndar(int numAndar)

@@ -170,7 +170,7 @@ namespace GeladeiraAPI.Controllers
             }
 
             listItems.Remove(item);
-
+             
             return Ok($"Item com ID {id} foi excluído com sucesso.");
         }
 

@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Repository.Models;
+
 namespace GeladeiraAPI
 {
     public class Program
@@ -12,6 +16,10 @@ namespace GeladeiraAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<GELADEIRAContext>(options => {
+            options.UseSqlServer("Server=LAPTOP-UC5IQEQ6;Database=GELADEIRA;Uid=sa;Pwd=123;Trusted_Connection=True;TrustServerCertificate=True;");
+                });
 
             var app = builder.Build();
 

@@ -21,6 +21,13 @@ Requisitos
 SQL Server
 Ferramentas para desenvolvimento (Visual Studio, VS Code, etc.)
 
+###Banco de dados
+CREATE DATABASE GeladeiraMigration;
+
+USE GeladeiraMigration;
+
+select * from Items
+
 ### GitHub: Isadora Melo
 
 

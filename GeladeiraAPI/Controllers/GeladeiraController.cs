@@ -1,5 +1,9 @@
 using GeladeiraCodeRDIVersity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RepositoryMigration;
+using Services;
+using System.ComponentModel;
 
 namespace GeladeiraAPI.Controllers
 {
@@ -7,151 +11,60 @@ namespace GeladeiraAPI.Controllers
     [Route("[controller]")]
     public class GeladeiraController : ControllerBase
     {
-        private List<Item> listItems;
-        private List<Andar> andarList;
+        GeladeiraService _service;
+        private readonly GeladeiraContext _contexto;
 
-        private readonly Container _container;
-        private readonly Andar _andar;
-        private readonly Geladeira _geladeira;
-
-        //public class AdicionarItemRequest
-        //{
-        //    public Geladeira Geladeira { get; set; }
-        //    public Container Container { get; set; }
-        //    public Andar Andar { get; set; }
-        //    public Item Item { get; set; }
-        //}
-
-        public GeladeiraController()
+        public GeladeiraController(GeladeiraContext contexto)
         {
-            var objItemMorango = new Item() { Id = 1, Alimento = "morango", Quantidade = 1, Unidade = "Cacho", Classificacao = "Hortifruti" };
-            var objItemUva = new Item() { Id = 2, Alimento = "Uva", Quantidade = 1, Unidade = "Cacho", Classificacao = "Hortifruti" };
-            var objItemTomate = new Item() { Id = 3, Alimento = "Tomate", Quantidade = 1, Unidade = "", Classificacao = "Hortifruti" };
-            var objItemBanana = new Item() { Id = 4, Alimento = "Banana", Quantidade = 1, Unidade = "Penca", Classificacao = "Hortifruti" };
-
-            var objItemTomatePelado = new Item() { Id = 5, Alimento = "Tomate Pelado", Quantidade = 1, Unidade = "Lata", Classificacao = "Laticínios e Enlatados" };
-            var objItemCremeLeite = new Item() { Id = 6, Alimento = "Creme de Leite", Quantidade = 1, Unidade = "Caixa", Classificacao = "Laticínios e Enlatados" };
-            var objItemLeite = new Item() { Id = 7, Alimento = "Leite", Quantidade = 1, Unidade = "Litro", Classificacao = "Laticínios e Enlatados" };
-
-            var objItemBacon = new Item() { Id = 8, Alimento = "Bacon", Quantidade = 1, Unidade = "Kilos", Classificacao = "Charcutaria, Carnes e Ovos" };
-            var objItemCarne = new Item() { Id = 9, Alimento = "Carne", Quantidade = 1, Unidade = "kilos", Classificacao = "Charcutaria, Carnes e Ovos" };
-            var objItemOvos = new Item() { Id = 10, Alimento = "Ovos", Quantidade = 1, Unidade = "duzia", Classificacao = "Charcutaria, Carnes e Ovos" };
-
-            listItems = new List<Item>() { objItemMorango, objItemUva, objItemTomate, objItemBanana , objItemTomatePelado, objItemCremeLeite,
-                objItemLeite,objItemBacon,objItemCarne,objItemOvos};
-
-            andarList = new List<Andar>();
-
-            _container = new Container();
-            _andar = new Andar();
-            _geladeira = new Geladeira();
+            _contexto = contexto;
+            _service = new GeladeiraService(_contexto);
         }
 
-        [HttpHead("{id}")]
-        public IActionResult CheckItemExists(int id)
+        [HttpHead]
+        public IActionResult CheckStatusGeladeira()
         {
-            var item = listItems.FirstOrDefault(p => p.Id == id);
-            if (item != null)
-            {
-                return Ok();
-            }
-            else
-            {
-                return NotFound();
-            }
+            var count = _contexto.Items.Count();
+            Response.Headers.Append("Total", count.ToString());
+            return Ok();
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Item>> Get()
+        public ActionResult<IEnumerable<Item>> GetListaItens()
         {
-            if (listItems == null || !listItems.Any())
+            try
             {
-                return NotFound("Nenhum item encontrado.");
+                return Ok(_service.ListaDeItens());
             }
-            return Ok(listItems);
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult GetById(int id)
         {
-            var item = listItems.FirstOrDefault(p => p.Id == id);
-
-            if (item != null)
+            try
             {
-                int posicao = listItems.IndexOf(item);
+                var item = _service.GetItemById(id);
 
-                return Ok(new
-                {
-                    Item = item,
-                    Posicao = posicao,
-                    Andar = _andar.NumeroAndar,
-                    Container = _container.NumeroDeContainer
-                });
+                return Ok(item);
             }
-            else
+            catch (Exception ex)
             {
-                return NotFound("Item não encontrado.");
+                return BadRequest(ex.Message);
             }
+
         }
 
-        [HttpPost]
-
+        [HttpPost("AdicionarItem")]
         public IActionResult PostItem([FromBody] Item item)
         {
-            if (item.Alimento == null)
-            {
-                return BadRequest("Preencha o item");
-            }
-
-            listItems.Add(item);
-
-            return Ok($"{item} foi adicionado com sucesso");
-        }
-
-        [HttpPut("{id}")]
-        public ActionResult<List<Item>> PutById(int id, [FromBody] Item value)
-        {
-            var geladeira = listItems.Where(p => p.Id == id).FirstOrDefault();
-
-            if (geladeira == null)
-            {
-                NotFound();
-                return new List<Item>();
-            }
-
-            geladeira.Alimento = value.Alimento;
-            geladeira.Quantidade = value.Quantidade;
-            geladeira.Unidade = value.Unidade;
-            geladeira.Classificacao = value.Classificacao;
-
-            return listItems;
-        }
-
-        [HttpPut("Editar")]
-        public ActionResult PutByPosition(int andar, int container, int posicaoAtual, int novaPosicao)
-        {
             try
             {
-                var andarSelecionado = _geladeira.AvaliarAndar(andar);
-                if (andarSelecionado == null)
-                {
-                    return NotFound($"Andar {andar} não encontrado.");
-                }
-
-                var containerSelecionado = andarSelecionado.ObterContainer(container);
-                if (containerSelecionado == null)
-                {
-                    return NotFound($"Container {container} não encontrado.");
-                }
-
-                var resultado = containerSelecionado.AlterarPosicaoItem(posicaoAtual, novaPosicao);
-
-                if (resultado.Contains("inválida") || resultado.Contains("não existe item") || resultado.Contains("ocupada"))
-                {
-                    return BadRequest(resultado);
-                }
-
-                return Ok(resultado);
+                _service.AddNaGeladeira(item);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -159,41 +72,51 @@ namespace GeladeiraAPI.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpPost("AddLista")]
+        public IActionResult PostList([FromBody] List<Item> items)
+        {
+            if (items == null || !items.Any())
+            {
+                return BadRequest("A lista de itens não pode ser nula ou vazia.");
+            }
+            try
+            {
+                return Ok(_service.AdicionarListaItensGeladeira(items));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("AtualizarItem")]
+        public IActionResult PutById([FromBody] Item item)
+        {
+            try
+            {
+                _service.EditarItemNaGeladeira(item);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return null;
+        }
+
+        [HttpDelete("RemoverPorId")]
         public ActionResult DeleteById(int id)
         {
-            var item = listItems.FirstOrDefault(p => p.Id == id);
-
-            if (item == null || id <= 0)
-            {
-                return NotFound("Item não encontrado.");
-            }
-
-            listItems.Remove(item);
-             
-            return Ok($"Item com ID {id} foi excluído com sucesso.");
-        }
-
-        [HttpDelete("remover")]
-        public ActionResult DeleteByPosition(int numAndar, int numContainer, int posicao)
-        {
             try
             {
-                var andarSelecionado = andarList.FirstOrDefault(a => a.NumeroAndar == numAndar);
-                if (andarSelecionado == null)
-                {
-                    return NotFound($"Andar {numAndar} não encontrado.");
-                }
+                var item = _service.GetItemById(id);
 
-                var containerSelecionado = andarSelecionado.ObterContainer(numContainer);
-                if (containerSelecionado == null)
-                {
-                    return NotFound($"Container {numContainer} não encontrado.");
-                }
+                if (item == null)
+                    return NotFound();
 
-                containerSelecionado.RemoverItemDoConatiner(posicao);
+                _service.RemoverItembyId(id);
 
-                return Ok($"Item removido da posição {posicao} no container {numContainer} no andar {numAndar}.");
+                return Ok("Item retirado!");
             }
             catch (Exception ex)
             {
@@ -201,36 +124,20 @@ namespace GeladeiraAPI.Controllers
             }
         }
 
-
-        //[HttpPost("AdicionarItens")]
-        //public ActionResult<string> Post([FromBody] AdicionarItemRequest addItem)
+        //[HttpDelete("EsvaziarGeladeira")]
+        //public ActionResult EsvaziarGeladeiraCompleta([FromBody] List<int> id)
         //{
-        //    if (addItem == null || addItem.Item == null)
-        //    {
-        //        return BadRequest("O campo está vazio, por favor adicione um valor");
-        //    }
         //    try
         //    {
-        //        int andarEscolhido = 0;
-
-        //        var resultado = _geladeira.AdicionarItemNaGeladeira(
-        //                andarEscolhido,
-        //                addItem.Container.NumeroDeContainer,
-        //                addItem.Geladeira.Posicao,
-        //                addItem.Item
-        //                  );
-        //        if (resultado.Contains("não tem espaço suficiente"))
-        //        {
-        //            return BadRequest(resultado);
-        //        }
-
-        //        return Ok("Item adicionado com sucesso.");
+        //        var resultado = _service.EsvaziarGeladeira(id);
+        //        return Ok(resultado);
         //    }
         //    catch (Exception ex)
         //    {
-        //        return BadRequest($"Erro ao adicionar item: {ex.Message}");
+        //        return BadRequest(ex.Message);
         //    }
         //}
+
     }
 
 }

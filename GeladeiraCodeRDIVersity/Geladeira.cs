@@ -3,15 +3,14 @@
     public class Geladeira
     {
         private List<Andar> _andares;
-        public int Posicao { get; set; }
+
         public Item Item { get; set; }
 
         public Geladeira() { }
 
-        public Geladeira(int numContainer, Item item, int posicao = 4, int numAndares = 3)
+        public Geladeira(int numContainer, Item item, int numAndares = 3)
         {
             _andares = new List<Andar>();
-            Posicao = posicao;
             Item = item;
 
             for (int i = 0; i < numAndares; i++)

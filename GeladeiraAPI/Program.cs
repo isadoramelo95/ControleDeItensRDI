@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Repository.Models;
+using RepositoryMigration;
 
 namespace GeladeiraAPI
 {
@@ -17,9 +17,10 @@ namespace GeladeiraAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<GELADEIRAContext>(options => {
-            options.UseSqlServer("Server=LAPTOP-UC5IQEQ6;Database=GELADEIRA;Uid=sa;Pwd=123;Trusted_Connection=True;TrustServerCertificate=True;");
-                });
+            builder.Services.AddDbContext<GeladeiraContext>(options => {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
 
             var app = builder.Build();
 

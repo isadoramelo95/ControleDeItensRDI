@@ -7,12 +7,6 @@ Utiliza tecnologias modernas como C#, Entity Framework(Migrations) e SQL Server.
 ## Funcionalidades
 ### Gerenciamento de Itens:
 Adicione, edite e remova itens da geladeira.
-### Controle de Containers: 
-Organize itens em containers dentro de andares.
-### Integração com API:
-Utilize métodos HTTP para interagir com o sistema.
-### Persistência de Dados: 
-Armazenamento de dados utilizando SQL Server e Entity Framework.
 
 ## Tecnologias Utilizadas
 Linguagem de Programação:

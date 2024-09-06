@@ -11,7 +11,7 @@ using RepositoryMigration;
 
 namespace RepositoryMigration.Migrations
 {
-    [DbContext(typeof(GeladeiraContext))]
+    [DbContext(typeof(RepositoryMigration))]
     [Migration("20240904160753_InitialMigration")]
     partial class InitialMigration
     {

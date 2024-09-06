@@ -9,7 +9,7 @@ namespace Services
 {
     public class GeladeiraService
     {
-        GeladeiraContext _contexto;
+        private readonly GeladeiraContext _contexto;
         public GeladeiraService(GeladeiraContext contexto)
         {
             _contexto = contexto;
@@ -23,21 +23,21 @@ namespace Services
 
                 if (item != null)
                 {
-                    var itemnageladeira = GetItemById((int)item.Id);
+                    var itemNaGeladeira = GetItemById((int)item.Id);
 
-                    if (itemnageladeira != null)
+                    if (itemNaGeladeira != null)
                     {
-                        if (itemnageladeira.Alimento == item.Alimento
-                            && itemnageladeira.NumeroAndar == item.NumeroAndar
-                            && itemnageladeira.NumeroContainer == item.NumeroContainer
-                            && itemnageladeira.Classificacao == item.Classificacao
-                            && itemnageladeira.Id == (int)item.Id)
+                        if (itemNaGeladeira.Alimento == item.Alimento
+                            && itemNaGeladeira.NumeroAndar == item.NumeroAndar
+                            && itemNaGeladeira.NumeroContainer == item.NumeroContainer
+                            && itemNaGeladeira.Classificacao == item.Classificacao
+                            && itemNaGeladeira.Id == item.Id)
                         {
                             return "item existente no sistema!";
                         }
                     }
 
-                    if (itemnageladeira == null)
+                    if (itemNaGeladeira == null)
                     {
                         var item_entity = new Item()
                         {
@@ -60,14 +60,11 @@ namespace Services
                         _contexto.SaveChanges();
                         _contexto.Database.CommitTransaction();
 
-                        if (string.IsNullOrEmpty(item.Alimento))
+                        if (item == null || item.Id <= 0 || string.IsNullOrEmpty(item.Alimento))
                         {
-                            return "O nome do alimento é obrigatório!";
+                            return "Item inválido! O nome do alimento e ID são obrigatórios.";
                         }
-
                     }
-                    else
-                        return "erro ao cadastrar!";
                 }
                 return "item cadastrado com sucesso na geladeira!";
             }
@@ -85,10 +82,11 @@ namespace Services
         public string AdicionarListaItensGeladeira(List<Item> items)
         {
             _contexto.Database.BeginTransaction();
+
             foreach (Item item in items)
             {
-                var itensContainer = _contexto.Items.Where(c => c.Id == item.Id 
-                && c.NumeroAndar == item.NumeroAndar 
+                var itensContainer = _contexto.Items.Where(c => c.Id == item.Id
+                && c.NumeroAndar == item.NumeroAndar
                 && c.NumeroContainer == item.NumeroContainer).ToList();
 
                 if (itensContainer is not null)
@@ -122,20 +120,9 @@ namespace Services
 
         public List<Item>? ListaDeItens()
         {
-            List<Item> listaItens = new List<Item>();
             try
             {
-
-                listaItens = _contexto.Items.ToList();
-
-                if (listaItens != null)
-                {
-                    return listaItens;
-                }
-                else
-                {
-                    return null;
-                }
+                return _contexto.Items.ToList();
             }
             catch (Exception)
             {

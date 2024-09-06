@@ -10,7 +10,7 @@ using RepositoryMigration;
 
 namespace RepositoryMigration.Migrations
 {
-    [DbContext(typeof(GeladeiraContext))]
+    [DbContext(typeof(RepositoryMigration))]
     partial class GeladeiraContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

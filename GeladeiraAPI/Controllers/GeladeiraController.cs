@@ -28,7 +28,7 @@ namespace GeladeiraAPI.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("ListaItens")]
         public ActionResult<IEnumerable<Item>> GetListaItens()
         {
             try

@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\GeladeiraCodeRDIVersity\Domain.csproj" />
     <ProjectReference Include="..\RepositoryMigration\RepositoryMigration.csproj" />
-    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

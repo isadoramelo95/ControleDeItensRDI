@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "GeladeiraCodeRDIV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeladeiraAPI", "GeladeiraAPI\GeladeiraAPI.csproj", "{67AF5824-172D-481C-8323-81837783B70A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{6A900823-81CD-427C-AC70-16D0D9ADCFA1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryMigration", "RepositoryMigration\RepositoryMigration.csproj", "{6674E56B-523E-4384-A6FE-4E36B9F6AF27}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{67AF5824-172D-481C-8323-81837783B70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67AF5824-172D-481C-8323-81837783B70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67AF5824-172D-481C-8323-81837783B70A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A900823-81CD-427C-AC70-16D0D9ADCFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A900823-81CD-427C-AC70-16D0D9ADCFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A900823-81CD-427C-AC70-16D0D9ADCFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A900823-81CD-427C-AC70-16D0D9ADCFA1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6674E56B-523E-4384-A6FE-4E36B9F6AF27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6674E56B-523E-4384-A6FE-4E36B9F6AF27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6674E56B-523E-4384-A6FE-4E36B9F6AF27}.Release|Any CPU.ActiveCfg = Release|Any CPU

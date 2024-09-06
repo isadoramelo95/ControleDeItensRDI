@@ -60,9 +60,9 @@ namespace Services
                         _contexto.SaveChanges();
                         _contexto.Database.CommitTransaction();
 
-                        if (string.IsNullOrEmpty(item.Alimento))
+                        if (item == null || item.Id <= 0 || string.IsNullOrEmpty(item.Alimento))
                         {
-                            return "O nome do alimento é obrigatório!";
+                            return "Item inválido! O nome do alimento e ID são obrigatórios.";
                         }
 
                     }
@@ -122,20 +122,9 @@ namespace Services
 
         public List<Item>? ListaDeItens()
         {
-            List<Item> listaItens = new List<Item>();
             try
             {
-
-                listaItens = _contexto.Items.ToList();
-
-                if (listaItens != null)
-                {
-                    return listaItens;
-                }
-                else
-                {
-                    return null;
-                }
+                return _contexto.Items.ToList();
             }
             catch (Exception)
             {

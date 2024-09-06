@@ -9,11 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "GeladeiraCodeRDIV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeladeiraAPI", "GeladeiraAPI\GeladeiraAPI.csproj", "{67AF5824-172D-481C-8323-81837783B70A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{174FA2F7-B1A6-42FD-A92D-00FA6A9C3FE1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{6A900823-81CD-427C-AC70-16D0D9ADCFA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryMigration", "RepositoryMigration\RepositoryMigration.csproj", "{6674E56B-523E-4384-A6FE-4E36B9F6AF27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryMigration", "RepositoryMigration\RepositoryMigration.csproj", "{6674E56B-523E-4384-A6FE-4E36B9F6AF27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,9 +42,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{6A900823-81CD-427C-AC70-16D0D9ADCFA1} = {174FA2F7-B1A6-42FD-A92D-00FA6A9C3FE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1ADF344-29BB-4669-B1DF-F86C50E0E3A8}

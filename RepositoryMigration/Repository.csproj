@@ -19,4 +19,8 @@
     <ProjectReference Include="..\GeladeiraCodeRDIVersity\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

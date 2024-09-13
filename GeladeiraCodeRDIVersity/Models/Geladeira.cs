@@ -1,31 +1,26 @@
-﻿namespace GeladeiraCodeRDIVersity
+﻿namespace Domain.Models
 {
     public class Geladeira
     {
         private List<Andar> _andares;
-
+        private const int length = 3;
         public Item Item { get; set; }
 
-        public Geladeira() { }
-
-        public Geladeira(int numContainer, Item item, int numAndares = 3)
+        public Geladeira()
         {
             _andares = new List<Andar>();
-            Item = item;
-
-            for (int i = 0; i < numAndares; i++)
+            for (int i = 0; i < length; i++)
                 _andares.Add(new Andar(i));
 
         }
 
         public Andar AvaliarAndar(int numAndar)
         {
-            if (numAndar < 0 || numAndar >= _andares.Count)
-            {
-                throw new Exception("Número do andar inválido.");
-            }
+            if (numAndar < 0 || numAndar >= length)
+                throw new Exception("Posição inválida!");
             return _andares[numAndar];
         }
+
 
         public string AdicionarItemNaGeladeira(int? numAndar, int numContainer, int? posicao, Item item)
         {
@@ -61,10 +56,10 @@
             container?.RemoverItemDoConatiner(posicao);
         }
 
-        public void LimparContainer(int numAndar, int numContainer)
+        public void LimparGeladeira(int numAndar, int numContainer)
         {
             var container = _andares[numAndar].ObterContainer(numContainer);
-            container?.EsvaziarGeladeira();
+            container?.EsvaziarContainer();
         }
 
         public void ExibirItensNaGeladeira()

@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "GeladeiraCodeRDIV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeladeiraAPI", "GeladeiraAPI\GeladeiraAPI.csproj", "{67AF5824-172D-481C-8323-81837783B70A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryMigration", "RepositoryMigration\RepositoryMigration.csproj", "{6674E56B-523E-4384-A6FE-4E36B9F6AF27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "RepositoryMigration\Repository.csproj", "{6674E56B-523E-4384-A6FE-4E36B9F6AF27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Service\Services.csproj", "{192C9D7F-D7FE-43AD-A14E-873E335A51E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Service\Services.csproj", "{192C9D7F-D7FE-43AD-A14E-873E335A51E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

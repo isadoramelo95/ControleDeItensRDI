@@ -1,8 +1,9 @@
-﻿namespace GeladeiraCodeRDIVersity
+﻿namespace Domain.Models
 {
     public class Andar
     {
         private readonly List<Container> _containers;
+        private readonly List<Item> Itens;
 
         public int NumeroAndar { get; private set; }
 
@@ -13,12 +14,18 @@
         {
             NumeroAndar = numeroAndar;
             _containers = new List<Container>();
+            Itens = new List<Item>();
 
             for (int i = 0; i < qntContainers; i++)
                 _containers.Add(new Container(i));
         }
 
-        public string ObterAndar(int numeroAndar) => ObterAndar(numeroAndar);
+        public void AvaliarAndares(int numAndar, List<Andar> lstAndares)
+        {
+            if (numAndar < 0 || numAndar >= lstAndares.Count)
+                throw new Exception("Numero do andar inválido!");
+        }
+        public string BuscarAndares(int numeroAndar) => BuscarAndares(numeroAndar);
         public Container? ObterContainer(int numeroContainer) =>
            _containers.FirstOrDefault(container => container.NumeroDeContainer == numeroContainer);
 
@@ -27,7 +34,7 @@
             var mensagem = $"Andar {NumeroAndar}:\n";
             foreach (var container in _containers)
             {
-                mensagem += container.ExibirItens() + "\n";
+                mensagem += container.ExibirItensContainer() + "\n";
             }
 
             return mensagem;

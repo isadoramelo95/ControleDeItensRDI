@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RepositoryMigration;
+using Repository.Context;
 
 #nullable disable
 
-namespace RepositoryMigration.Migrations
+namespace Repository.Migrations
 {
-    [DbContext(typeof(RepositoryMigration))]
-    [Migration("20240904160753_InitialMigration")]
-    partial class InitialMigration
+    [DbContext(typeof(GeladeiraContext))]
+    [Migration("20240913213253_InitCreate")]
+    partial class InitCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace RepositoryMigration.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GeladeiraCodeRDIVersity.Item", b =>
+            modelBuilder.Entity("Domain.Models.Item", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()

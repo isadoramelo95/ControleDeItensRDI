@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RepositoryMigration;
+using Repository.Context;
 
 #nullable disable
 
-namespace RepositoryMigration.Migrations
+namespace Repository.Migrations
 {
-    [DbContext(typeof(RepositoryMigration))]
+    [DbContext(typeof(GeladeiraContext))]
     partial class GeladeiraContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace RepositoryMigration.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GeladeiraCodeRDIVersity.Item", b =>
+            modelBuilder.Entity("Domain.Models.Item", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()

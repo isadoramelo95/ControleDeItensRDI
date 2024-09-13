@@ -1,6 +1,13 @@
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using RepositoryMigration;
+using Microsoft.OpenApi.Models;
+using Repository.Context;
+using Repository.Interfaces;
+using Repository.RepositoriesClasses;
+using Services;
+using Services.DIP;
+using Services.Interfaces;
 
 namespace GeladeiraAPI
 {
@@ -17,11 +24,8 @@ namespace GeladeiraAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<GeladeiraContext>(options => {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-
+            Initializer.Configure(builder.Services,
+                         builder.Configuration.GetConnectionString("DefaultConnection"));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -30,6 +34,7 @@ namespace GeladeiraAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
 
             app.UseHttpsRedirection();
 

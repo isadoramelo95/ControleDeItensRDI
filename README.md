@@ -1,7 +1,9 @@
 <h1 align="center">CodeRDIVersity</h1>
+
+
 <p align="center">Descrição</p>
 Aplicação desenvolvida para gerenciar e controlar itens em uma geladeira inteligente.
-A aplicação permite adicionar, editar e remover itens, além de integrar com uma API para manipulação de dados.
+A aplicação permite adicionar, editar, receber lista de itens e remover itens, além de integrar com uma API para manipulação de dados.
 Utiliza tecnologias como C#, Entity Framework(Migrations) e SQL Server 2022.
 IDE - Visual Studio 2022
 
@@ -22,7 +24,7 @@ Estrutura de Dados: JSON
 .NET 6 ou superior
 Ferramentas para desenvolvimento (Visual Studio)
 
-###Banco de dados
+### Banco de dados
 
 CREATE DATABASE GeladeiraMigration;
 

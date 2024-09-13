@@ -12,8 +12,8 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(GeladeiraContext))]
-    [Migration("20240913134743_InitMigration")]
-    partial class InitMigration
+    [Migration("20240913213253_InitCreate")]
+    partial class InitCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

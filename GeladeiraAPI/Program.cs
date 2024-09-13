@@ -28,15 +28,6 @@ namespace GeladeiraAPI
                          builder.Configuration.GetConnectionString("DefaultConnection"));
             var app = builder.Build();
 
-            //builder.Services.AddScoped<IServices<Item>, GeladeiraService>();
-            //builder.Services.AddScoped<IRepository<Item>, GeladeiraRepository>();
-
-            //builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
-
-            //// Iniciar o app
-            // app = builder.Build();
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

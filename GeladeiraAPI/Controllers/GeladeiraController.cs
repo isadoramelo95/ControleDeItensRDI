@@ -62,7 +62,7 @@ namespace GeladeiraAPI.Controllers
             try
             {
                await _services.AddNaGeladeira(item);
-                return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
+                return Ok();
             }
             catch (Exception ex)
             {

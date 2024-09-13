@@ -20,11 +20,14 @@ namespace Services
                 if (item != null)
                 {
 
-                    Item? itemExistente = GetItemById((int)item.Id);
+                    if (await ValidarItemExistente(item))
+                        throw new Exception("Posição já preenchida!");
+
+                    var itemExistente = GetItemById((int)item.Id);
 
                     if (itemExistente == null)
                     {
-                       await _repository.AddNaGeladeira(item);
+                        await _repository.AddNaGeladeira(item);
 
                         return "Item cadastrado com sucesso!";
                     }
@@ -164,5 +167,8 @@ namespace Services
             return "Andar esvaziado com sucesso!";
 
         }
+
+        public bool AvaliarItem(int id) =>
+            _repository.ValidarItemExistente(id);
     }
 }

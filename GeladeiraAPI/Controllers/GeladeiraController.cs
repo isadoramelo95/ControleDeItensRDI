@@ -79,7 +79,7 @@ namespace GeladeiraAPI.Controllers
             }
             try
             {
-                return Ok(_services.AdicionarListaItensGeladeira(items));
+                return Ok(await _services.AdicionarListaItensGeladeira(items));
             }
             catch (Exception ex)
             {
@@ -93,7 +93,7 @@ namespace GeladeiraAPI.Controllers
             try
             {
                 await _services.EditarItemNaGeladeira(item);
-                return Ok();
+                return Ok("Item alterado com sucesso!");
             }
             catch (Exception ex)
             {
@@ -121,12 +121,12 @@ namespace GeladeiraAPI.Controllers
             }
         }
 
-        [HttpDelete("EsvaziarGeladeiraPorAndar")]
-        public async Task<IActionResult> EsvaziarPorAndar(int numAndar)
+        [HttpDelete("EsvaziarGeladeiraPorContainer")]
+        public async Task<IActionResult> EsvaziarPorContainer(int numContainer)
         {
             try
             {
-                return Ok(await _services.EsvaziarAndar(numAndar));
+                return Ok(await _services.EsvaziarPorContainer(numContainer));
             }
             catch (Exception ex)
             {

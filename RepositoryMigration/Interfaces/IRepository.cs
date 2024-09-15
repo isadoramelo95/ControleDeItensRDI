@@ -2,13 +2,13 @@
 
 namespace Repository.Interfaces
 {
-    public interface IRepository<Item>
+    public interface IRepository<TEntity> where TEntity : class
     {
-        Task EditarItemNaGeladeira(Item item);
+        Task<string> EditarItemNaGeladeira(Item item);
         Task AddNaGeladeira(Item item);
         Task<List<Item>> ListaDeItens();
         Task RemoverItembyId(int id);
         Item? GetItemById(int id);
-        bool ValidarItemExistente (int id);
+        bool ValidarItemExistente(int id);
     }
 }

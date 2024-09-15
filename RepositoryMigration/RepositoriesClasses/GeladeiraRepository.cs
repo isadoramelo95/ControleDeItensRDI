@@ -36,24 +36,23 @@ namespace Repository.RepositoriesClasses
 
         public async Task AddNaGeladeira(Item item)
         {
-            using (var transaction = await _context.Database.BeginTransactionAsync())
+            await _context.Database.BeginTransactionAsync();
+
+            try
             {
-                try
-                {
-                    await _context.Items.AddAsync(item);
-                    await _context.SaveChangesAsync();
-                    await transaction.CommitAsync();
-                }
-                catch (SqlException ex)
-                {
-                    await transaction.RollbackAsync();
-                    throw new Exception($"Erro ao inserir item na geladeira: {ex.Message}");
-                }
-                catch (Exception ex)
-                {
-                    await transaction.RollbackAsync();
-                    throw new Exception($"Erro ao inserir item na geladeira: {ex.Message}");
-                }
+                await _context.Items.AddAsync(item);
+                await _context.SaveChangesAsync();
+                await _context.Database.CommitTransactionAsync();
+            }
+            catch (SqlException ex)
+            {
+                await _context.Database.RollbackTransactionAsync();
+                throw new Exception($"Erro ao inserir item na geladeira: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                await _context.Database.RollbackTransactionAsync();
+                throw new Exception($"Erro ao inserir item na geladeira: {ex.Message}");
             }
         }
 
@@ -79,14 +78,25 @@ namespace Repository.RepositoriesClasses
             }
         }
 
-        public async Task EditarItemNaGeladeira(Item item)
+        public async Task<string> EditarItemNaGeladeira(Item item)
         {
             try
             {
-                _context.Entry(item).State = EntityState.Modified;
+                var itemExistente = _context.Items.Find(item.Id);
 
-                _context.Update(item);
+                if (itemExistente == null)
+                {
+                    throw new Exception("Item não encontrado");
+                }
+
+                itemExistente.Alimento = item.Alimento;
+                itemExistente.Quantidade = item.Quantidade;
+                itemExistente.Unidade = item.Unidade;
+
+                _context.Items.Update(itemExistente);
                 await _context.SaveChangesAsync();
+
+                return "Item atualizado com sucesso!";
             }
             catch (SqlException)
             {

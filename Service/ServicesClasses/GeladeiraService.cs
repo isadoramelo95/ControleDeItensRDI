@@ -148,17 +148,17 @@ namespace Services
             }
         }
 
-        public async Task<string> EsvaziarAndar(int numAndar)
+        public async Task<string> EsvaziarPorContainer(int numContainer)
         {
-            var andar = await ListaDeItens();
+            var container = await ListaDeItens();
 
-            andar = andar?.Where(a => a.NumeroAndar == numAndar).ToList();
+            container = container?.Where(c => c.NumeroContainer == numContainer).ToList();
 
-            if (andar != null)
+            if (container != null)
             {
-                foreach (var item in andar)
+                foreach (var item in container)
                 {
-                    await _repository.RemoverItembyId((int)item.Id);
+                    await _repository.RemoverItembyId(item.Id);
                 }
             }
             else

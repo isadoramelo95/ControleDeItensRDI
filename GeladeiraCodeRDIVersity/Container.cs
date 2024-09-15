@@ -44,7 +44,7 @@ namespace GeladeiraCodeRDIVersity
                 return ($"A posição {posicao} já está ocupada.");
 
             _itens[posicao] = item;
-            return ($"Item adicionado à posição {posicao}: {item.Alimento}, {item.Classificacao}.");
+            return ($"Item adicionado à posição {posicao}: {item.Alimento}, {item.ClassificacaoDoAndar}.");
         }
 
         public string AlterarPosicaoItem(int posicaoAtual, int novaPosicao)
@@ -86,7 +86,7 @@ namespace GeladeiraCodeRDIVersity
                 var item = _itens[posicao];
                 if (item != null)
                 {
-                    return ($"Posição {posicao}: {item.Alimento}, {item.Quantidade}, {item.Classificacao}");
+                    return ($"Posição {posicao}: {item.Alimento}, {item.Quantidade}, {item.ClassificacaoDoAndar}");
                 }
             }
             return "Nenhum item encontrado no container.";

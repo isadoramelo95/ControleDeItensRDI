@@ -4,20 +4,20 @@ using System;
 Geladeira objGeladeira = new Geladeira();
 
 // andar 0 - Hortifruti
-var objItemMorango = new Item() { Alimento = "Morango", Quantidade = 1, Unidade = "Unidade", Classificacao = "Hortifruti", Id = 1 };
-var objItemUva = new Item() { Alimento = "Uva", Quantidade = 1, Unidade = "Cacho", Classificacao = "Hortifruti", Id = 2 };
-var objItemTomate = new Item() { Alimento = "Tomate", Quantidade = 1, Unidade = "", Classificacao = "Hortifruti", Id = 3 };
-var objItemBanana = new Item() { Alimento = "Banana", Quantidade = 1, Unidade = "Penca", Classificacao = "Hortifruti", Id = 4 };
+var objItemMorango = new Item() { Alimento = "Morango", Quantidade = 1, Unidade = "Unidade", ClassificacaoDoAndar = "Hortifruti", Id = 1 };
+var objItemUva = new Item() { Alimento = "Uva", Quantidade = 1, Unidade = "Cacho", ClassificacaoDoAndar = "Hortifruti", Id = 2 };
+var objItemTomate = new Item() { Alimento = "Tomate", Quantidade = 1, Unidade = "", ClassificacaoDoAndar = "Hortifruti", Id = 3 };
+var objItemBanana = new Item() { Alimento = "Banana", Quantidade = 1, Unidade = "Penca", ClassificacaoDoAndar = "Hortifruti", Id = 4 };
 
 // andar 1 - Laticínios e Enlatados
-var objItemTomatePelado = new Item() { Alimento = "Tomate Pelado", Quantidade = 1, Unidade = "Lata", Classificacao = "Laticínios e Enlatados", Id = 5 };
-var objItemCremeLeite = new Item() { Alimento = "Creme de Leite", Quantidade = 1, Unidade = "Caixa", Classificacao = "Laticínios e Enlatados", Id = 6 };
-var objItemLeite = new Item() { Alimento = "Leite", Quantidade = 1, Unidade = "Litro", Classificacao = "Laticínios e Enlatados", Id = 7 };
+var objItemTomatePelado = new Item() { Alimento = "Tomate Pelado", Quantidade = 1, Unidade = "Lata", ClassificacaoDoAndar = "Laticínios e Enlatados", Id = 5 };
+var objItemCremeLeite = new Item() { Alimento = "Creme de Leite", Quantidade = 1, Unidade = "Caixa", ClassificacaoDoAndar = "Laticínios e Enlatados", Id = 6 };
+var objItemLeite = new Item() { Alimento = "Leite", Quantidade = 1, Unidade = "Litro", ClassificacaoDoAndar = "Laticínios e Enlatados", Id = 7 };
 
 // andar 2 - Charcutaria, Carnes e Ovos
-var objItemBacon = new Item() { Alimento = "Bacon", Quantidade = 1, Unidade = "Kilos", Classificacao = "Charcutaria, Carnes e Ovos", Id = 8 };
-var objItemCarne = new Item() { Alimento = "Carne", Quantidade = 1, Unidade = "kilos", Classificacao = "Charcutaria, Carnes e Ovos", Id = 9 };
-var objItemOvos = new Item() { Alimento = "Ovos", Quantidade = 1, Unidade = "duzia", Classificacao = "Charcutaria, Carnes e Ovos", Id = 10 };
+var objItemBacon = new Item() { Alimento = "Bacon", Quantidade = 1, Unidade = "Kilos", ClassificacaoDoAndar = "Charcutaria, Carnes e Ovos", Id = 8 };
+var objItemCarne = new Item() { Alimento = "Carne", Quantidade = 1, Unidade = "kilos", ClassificacaoDoAndar = "Charcutaria, Carnes e Ovos", Id = 9 };
+var objItemOvos = new Item() { Alimento = "Ovos", Quantidade = 1, Unidade = "duzia", ClassificacaoDoAndar = "Charcutaria, Carnes e Ovos", Id = 10 };
 
 //Adicionar os itens na geladeira
 //Hortifruti
@@ -44,7 +44,7 @@ objGeladeira.ExibirItensNaGeladeira();
 
 objGeladeira.RemoverItem(1, 0, 0);
 
-var objItemIogurte = new Item() { Alimento = "Iogurte", Quantidade = 50, Unidade = "ml", Classificacao = "Laticínios e Enlatados", Id = 11 };
+var objItemIogurte = new Item() { Alimento = "Iogurte", Quantidade = 50, Unidade = "ml", ClassificacaoDoAndar = "Laticínios e Enlatados", Id = 11 };
 objGeladeira.AdicionarItemNaGeladeira(1, 0, 0, objItemIogurte);
 
 Console.WriteLine();

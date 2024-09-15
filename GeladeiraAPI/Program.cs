@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Repository.Models;
+using Services.DIP;
 
 namespace GeladeiraAPI
 {
@@ -17,10 +16,8 @@ namespace GeladeiraAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<GELADEIRAContext>(options => {
-            options.UseSqlServer("Server=LAPTOP-UC5IQEQ6;Database=GELADEIRA;Uid=sa;Pwd=123;Trusted_Connection=True;TrustServerCertificate=True;");
-                });
-
+            Initializer.Configure(builder.Services,
+                           builder.Configuration.GetConnectionString("DefaultConnection"));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

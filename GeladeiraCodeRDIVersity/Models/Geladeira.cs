@@ -53,7 +53,7 @@
         public void RemoverItem(int numAndar, int numContainer, int posicao)
         {
             var container = _andares[numAndar].ObterContainer(numContainer);
-            container?.RemoverItemDoConatiner(posicao);
+            container?.RemoverItemDoContainer(posicao);
         }
 
         public void LimparGeladeira(int numAndar, int numContainer)
@@ -69,5 +69,4 @@
         }
     }
 }
-//gerencia os andares
 

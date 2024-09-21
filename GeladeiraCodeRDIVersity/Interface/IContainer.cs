@@ -4,7 +4,7 @@ namespace Domain.Interface
 {
     public interface IContainer
     {
-        void RemoverItemDoConatiner(int posicao);
+        string RemoverItemDoContainer(int posicao);
         string AdicionarItem(int posicao, Item item);
         void AdicionarItens(List<Item> itens);
         string EsvaziarContainer();

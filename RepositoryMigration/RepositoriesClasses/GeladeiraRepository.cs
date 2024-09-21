@@ -36,22 +36,17 @@ namespace Repository.RepositoriesClasses
 
         public async Task AddNaGeladeira(Item item)
         {
-            await _context.Database.BeginTransactionAsync();
-
             try
             {
                 await _context.Items.AddAsync(item);
                 await _context.SaveChangesAsync();
-                await _context.Database.CommitTransactionAsync();
             }
             catch (SqlException ex)
             {
-                await _context.Database.RollbackTransactionAsync();
                 throw new Exception($"Erro ao inserir item na geladeira: {ex.Message}");
             }
             catch (Exception ex)
             {
-                await _context.Database.RollbackTransactionAsync();
                 throw new Exception($"Erro ao inserir item na geladeira: {ex.Message}");
             }
         }

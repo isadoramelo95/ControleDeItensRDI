@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Repository.Context
 {
@@ -28,5 +29,6 @@ namespace Repository.Context
                 .HasMaxLength(100);
 
         }
+
     }
 }

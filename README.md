@@ -32,6 +32,12 @@ USE GeladeiraMigration;
 
 select * from Items
 
+
+### UNIT TESTE
+
+Utilizado teste unitário.
+E criado Mock
+
 ## Aluna: 
 Isadora Melo
 

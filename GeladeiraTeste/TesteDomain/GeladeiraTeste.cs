@@ -18,10 +18,9 @@ namespace GeladeiraTeste.TesteDomain
         [Fact]
         public void AvaliarAndar_DeveLancarExcecaoParaNumeroDeAndarInvalido()
         {
-            // Arrange
+           
             var geladeira = new Geladeira();
 
-            // Act & Assert
             var ex = Assert.Throws<Exception>(() => geladeira.AvaliarAndar(5));
             Assert.Equal("Posição inválida!", ex.Message);
         }
@@ -63,11 +62,11 @@ namespace GeladeiraTeste.TesteDomain
         [Fact]
         public void AdicionarItemNaGeladeira_DeveLancarExcecaoSeContainerNaoExistir()
         {
-            // Arrange
+            
             var geladeira = new Geladeira();
             var item = new Item { Id = 1, Alimento = "Frango", Quantidade = 2, Classificacao = "Carne" };
 
-            // Act & Assert
+           
             var ex = Assert.Throws<Exception>(() => geladeira.AdicionarItemNaGeladeira(1, 3, 0, item));
             Assert.Equal("Desculpe, não foi adicionado nenhum item!", ex.Message);
         }

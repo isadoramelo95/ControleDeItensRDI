@@ -16,6 +16,8 @@ namespace Services.DIP
 
             services.AddScoped(typeof(IRepository<Item>), typeof(GeladeiraRepository));
             services.AddScoped(typeof(IServices<Item>), typeof(GeladeiraService));
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
     }
 }

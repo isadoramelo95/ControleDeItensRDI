@@ -1,1 +1,22 @@
+LoginResource
+﻿namespace Domain.Resources
+{
+    //tratar dados imutaveis, que não serão mudados
+    //é uma classe com tipo que não serão mudados
+    public sealed record LoginResource(string Nome, string Senha);
+}
 
+
+RegistroResource
+﻿namespace Domain.Resources
+{
+    public sealed record RegistroResource(string Nome, string Email, string Senha);
+}
+
+UsuarioResource
+﻿namespace Domain.Resources
+{
+    public sealed record UsuarioResource(int Id, string Nome, string Email);
+}
+
+Fazer uma pasta resource e uma classe para cada model

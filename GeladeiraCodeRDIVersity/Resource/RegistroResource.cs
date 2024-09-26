@@ -1,5 +1,5 @@
 ﻿namespace Domain.ResourceTeste
 {
-    public sealed record RegistroResource(string Nome, string Email, string Senha);
+    public sealed record RegistroResource(string Nome, string Email, string Senha, string UserName);
 
 }

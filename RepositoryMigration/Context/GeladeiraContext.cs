@@ -11,6 +11,7 @@ namespace Repository.Context
         {
         }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Usuario>? Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +26,18 @@ namespace Repository.Context
 
             modelBuilder.Entity<Item>()
                 .Property(i => i.Classificacao)
+                .IsRequired()
+                .HasMaxLength(100);
+            modelBuilder.Entity<Usuario>()
+                .HasKey(u => u.Id);
+
+            modelBuilder.Entity<Usuario>()
+                .Property(u => u.UserName)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<Usuario>()
+                .Property(u => u.Email)
                 .IsRequired()
                 .HasMaxLength(100);
 

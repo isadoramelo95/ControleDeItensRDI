@@ -1,4 +1,4 @@
-﻿using Domain.Resources;
+﻿using Domain.ResourceTeste;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 
@@ -25,7 +25,7 @@ namespace GeladeiraAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { ErrorMessage = e.Message });
+                return BadRequest(new { ErrorMessage = ex.Message });
             }
         }
 
@@ -39,7 +39,7 @@ namespace GeladeiraAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { ErrorMessage = e.Message });
+                return BadRequest(new { ErrorMessage = ex.Message });
             }
         }
     }

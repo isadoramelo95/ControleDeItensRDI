@@ -1,4 +1,4 @@
-﻿using Domain.Resources;
+﻿using Domain.ResourceTeste;
 
 namespace Services.Interfaces
 {

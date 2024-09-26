@@ -1,10 +1,10 @@
 ﻿using Domain.Models;
-using Domain.Resources;
+using Domain.ResourceTeste;
 using Microsoft.Extensions.Configuration;
-using Repository.Interface;
+using Repository.Interfaces;
 using Services.Interfaces;
 
-namespace Service
+namespace Services.ServicesClasses
 {
     public class UsuarioService : IUsuarioService
     {

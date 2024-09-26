@@ -5,6 +5,8 @@ using Repository.Context;
 using Repository.RepositoriesClasses;
 using Repository.Interfaces;
 using Services.Interfaces;
+using Services.ServicesClasses;
+using Microsoft.Extensions.Configuration;
 
 namespace Services.DIP
 {

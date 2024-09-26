@@ -1,7 +1,7 @@
 ﻿using Domain.Models;
-using Domain.Resources;
+using Domain.ResourceTeste;
 
-namespace Repository.Interface
+namespace Repository.Interfaces
 {
     public interface IUsuarioRepository
     {

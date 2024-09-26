@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Services
+namespace Services.ServicesClasses
 {
     public class SenhaHash
     {
@@ -17,7 +17,6 @@ namespace Services
             return ComputeHash(hash, salt, pepper, iteration - 1);
         }
 
-        //é usado para gerar um salt de bytes aleatórios e convertê-lo como uma string de base 64.
         public static string GenerateSalt()
         {
             using var rng = RandomNumberGenerator.Create();

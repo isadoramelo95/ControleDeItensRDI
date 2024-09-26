@@ -26,6 +26,7 @@ namespace Services.ServicesClasses
             {
                 Nome = resource.Nome,
                 Email = resource.Email,
+                UserName = resource.UserName,
                 SenhaSalt = SenhaHash.GenerateSalt()
             };
 

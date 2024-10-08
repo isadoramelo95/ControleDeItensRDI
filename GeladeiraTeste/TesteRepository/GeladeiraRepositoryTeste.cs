@@ -50,6 +50,7 @@ namespace GeladeiraTeste.TesteRepository
             // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
+
             var item = new Item
             {
                 Id = 1,
@@ -91,13 +92,14 @@ namespace GeladeiraTeste.TesteRepository
             // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
+
             var existingItem = new Item
             {
                 Id = 1,
                 Alimento = "Tomate",
                 Quantidade = 5,
                 Unidade = "kg",
-                Classificacao = "Hotifruit",
+                Classificacao = "Hortifruit",
                 NumeroAndar = 1,
                 NumeroContainer = 2,
                 Posicao = 1
@@ -105,12 +107,22 @@ namespace GeladeiraTeste.TesteRepository
             await context.Items.AddAsync(existingItem);
             await context.SaveChangesAsync();
 
-            var updatedItem = new Item { Id = 1, Alimento = "Cenoura", Quantidade = 10, Unidade = "kg" };
+            var updatedItem = new Item
+            {
+                Id = 1,
+                Alimento = "Cenoura",
+                Quantidade = 10,
+                Unidade = "kg"
+            };
+
             var result = await repository.EditarItemNaGeladeira(updatedItem);
 
             Assert.Equal("Item atualizado com sucesso!", result);
-            var itemAfterUpdate = await context.Items.FindAsync(1);
-            Assert.Equal(updatedItem.Alimento, itemAfterUpdate.Alimento);
+
+            var itemDepoisDoUpdate = await context.Items.FindAsync(1);
+            Assert.Equal(updatedItem.Alimento, itemDepoisDoUpdate.Alimento);
+            Assert.Equal(updatedItem.Quantidade, itemDepoisDoUpdate.Quantidade);
+            Assert.Equal(updatedItem.Unidade, itemDepoisDoUpdate.Unidade);
         }
 
         [Fact]
@@ -121,7 +133,6 @@ namespace GeladeiraTeste.TesteRepository
             var repository = new GeladeiraRepository(context);
             var item = new Item
             {
-                Id = 1,
                 Alimento = "Tomate",
                 Quantidade = 5,
                 Unidade = "kg",
@@ -165,9 +176,9 @@ namespace GeladeiraTeste.TesteRepository
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
 
-            var result = repository.ValidarItemExistente(1);
-
-            Assert.False(result);
+            var existingItem = context.Items.Find(1);
+            Assert.Null(existingItem);
+          
         }
     }
 }

@@ -21,6 +21,7 @@ namespace GeladeiraTeste.TesteRepository
         [Fact]
         public async Task AddNaGeladeira_Sucesso()
         {
+            // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
             var item = new Item
@@ -35,6 +36,7 @@ namespace GeladeiraTeste.TesteRepository
                 Posicao = 1
             };
 
+            // Act
             await repository.AddNaGeladeira(item);
 
             var result = await context.Items.FindAsync(item.Id);
@@ -45,6 +47,7 @@ namespace GeladeiraTeste.TesteRepository
         [Fact]
         public async Task RemoverItembyId_Sucesso()
         {
+            // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
             var item = new Item
@@ -70,10 +73,14 @@ namespace GeladeiraTeste.TesteRepository
         [Fact]
         public async Task RemoverItembyIdNaoRemove_NaoExisteId()
         {
+            // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
+            
+            // Act
             await repository.RemoverItembyId(1);
 
+            // Assert
             var result = await context.Items.FindAsync(1);
             Assert.Null(result);
         }
@@ -81,6 +88,7 @@ namespace GeladeiraTeste.TesteRepository
         [Fact]
         public async Task EditarItemNaGeladeira_Sucesso()
         {
+            // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
             var existingItem = new Item
@@ -108,6 +116,7 @@ namespace GeladeiraTeste.TesteRepository
         [Fact]
         public async Task EditarItemNaGeladeira_Erro()
         {
+            // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
             var item = new Item
@@ -128,6 +137,7 @@ namespace GeladeiraTeste.TesteRepository
         [Fact]
         public void ValidarItemExistente_Sucesso()
         {
+            // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
             var item = new Item
@@ -151,9 +161,12 @@ namespace GeladeiraTeste.TesteRepository
         [Fact]
         public void ValidarItemExistente_QuandoNaoExiste()
         {
+            // Arrange
             var context = GetInMemoryDbContext();
             var repository = new GeladeiraRepository(context);
+
             var result = repository.ValidarItemExistente(1);
+
             Assert.False(result);
         }
     }

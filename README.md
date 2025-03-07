@@ -8,7 +8,7 @@ Utiliza tecnologias como C#, Entity Framework(Migrations) e SQL Server 2022.
 IDE - Visual Studio 2022
 
 <p align="center"> Funcionalidades</p>
-### Gerenciamento de Itens:
+###Gerenciamento de Itens:
 
 - [x] Cadastro de produtos na geladeira
 

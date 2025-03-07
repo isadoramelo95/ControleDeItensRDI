@@ -42,8 +42,7 @@ E criado Mock
 Isadora Melo
 
 <h4 align="center"> 
-	🚧  Controle de Itens - Prosper 🚀 Em construção...  🚧
-</h4>
+	 Controle de Itens - Prosper 🚀 </h4>
 
 
 

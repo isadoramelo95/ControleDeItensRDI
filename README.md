@@ -9,9 +9,13 @@ IDE - Visual Studio 2022
 
 <p align="center"> Funcionalidades</p>
 ### Gerenciamento de Itens:
+
 - [x] Cadastro de produtos na geladeira
+
 - [x] Editar produtos na geladeira
+      
 - [x] Remover produtos na geladeira
+      
 - [x] Lista com os produtos da geladeira
 
 <p align="center">Tecnologias Utilizadas</p>
